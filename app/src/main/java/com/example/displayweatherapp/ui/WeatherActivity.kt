@@ -2,13 +2,11 @@ package com.example.displayweatherapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
 import android.view.View
 import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.displayweatherapp.R
-import com.example.displayweatherapp.models.Current
 import com.example.displayweatherapp.models.WeatherResponse
 import com.example.displayweatherapp.repository.WeatherRepository
 import com.example.displayweatherapp.util.Resource
@@ -18,7 +16,7 @@ class WeatherActivity : AppCompatActivity() {
     lateinit var viewModel: WeatherViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_weather)
         val city = resources.getStringArray(R.array.City)
         val weatherRepository = WeatherRepository()
         val viewModelProviderFactory = WeatherViewModelProviderFactory(weatherRepository)
@@ -26,42 +24,26 @@ class WeatherActivity : AppCompatActivity() {
             ViewModelProvider(this, viewModelProviderFactory).get(WeatherViewModel::class.java)
         //viewModel.getWeatherLocation(city[position])
         // access the items of the list
-
         viewModel.weatherLocation.observe(this, observer);
 
         // access the spinner
-        val spinner = findViewById<Spinner>(R.id.spinner)/*        val btn_location = findViewById(R.id.btn_location) as Button
+        val spinner = findViewById<Spinner>(R.id.spinner)
+
                 val btn_daysummary = findViewById(R.id.btn_daysummary) as Button
                 val btn_detailedweather = findViewById(R.id.btn_detailedweather) as Button
-                val btn_onedaydata = findViewById(R.id.btn_onedaydata) as Button
-                val btn_threedaydata = findViewById(R.id.btn_threedaydata) as Button
-                val btn_currenttemperature = findViewById(R.id.btn_currenttemperature) as Button
                 val btn_historicaldata = findViewById(R.id.btn_historicaldata_past3days) as Button
         // set on-click listener
-                btn_location.setOnClickListener {
-                    Toast.makeText(this@WeatherActivity, "Display Location", Toast.LENGTH_SHORT).show()
-                }
                 btn_daysummary.setOnClickListener {
-                    Toast.makeText(this@WeatherActivity, "Display Day Summary", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@WeatherActivity, "Display Day Summary based on city selection", Toast.LENGTH_SHORT).show()
                 }
                 btn_detailedweather.setOnClickListener {
-                    Toast.makeText(this@WeatherActivity, "Display Detailed Weather", Toast.LENGTH_SHORT)
-                        .show()
-                }
-                btn_onedaydata.setOnClickListener {
-                    Toast.makeText(this@WeatherActivity, "Display Oneday Data", Toast.LENGTH_SHORT).show()
-                }
-                btn_threedaydata.setOnClickListener {
-                    Toast.makeText(this@WeatherActivity, "Display Threeday Data", Toast.LENGTH_SHORT).show()
-                }
-                btn_currenttemperature.setOnClickListener {
-                    Toast.makeText(this@WeatherActivity, "Display current Temperature", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@WeatherActivity, " Detailed Weather details displayed based on city selection", Toast.LENGTH_SHORT)
                         .show()
                 }
                 btn_historicaldata.setOnClickListener {
-                    Toast.makeText(this@WeatherActivity, "Display Historical Data", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@WeatherActivity, "Display Historical Data based on city selection", Toast.LENGTH_SHORT)
                         .show()
-                }*/
+                }
         if (spinner != null) {
             val adapter = ArrayAdapter(
                 this, android.R.layout.simple_spinner_item, city
@@ -95,7 +77,9 @@ class WeatherActivity : AppCompatActivity() {
         if (linearContainer.childCount > 0) {
             linearContainer.removeAllViews()
         }
-
+        addFieldView("Name:", weatherResponse.location?.name.toString())
+        addFieldView("Region:", weatherResponse.location?.region.toString())
+        addFieldView("Country:", weatherResponse.location?.country.toString())
         addFieldView("Latitude:", weatherResponse.location?.lat.toString())
         addFieldView("Longitude:", weatherResponse.location?.lon.toString())
         addFieldView("Last Updated:", current.last_updated ?: "")
