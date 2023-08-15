@@ -11,7 +11,7 @@
         android:id="@+id/txtView_country"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select country:"
+        android:text="Select City:"
         android:textSize="20dp" />
 
     <Spinner
