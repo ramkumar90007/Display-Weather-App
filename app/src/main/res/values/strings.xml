@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Weather Display App</string>
+    <string name="selected_item">Selected item:</string>
+    <string-array name="City">
+        <item>Mumbai</item>
+        <item>Delhi</item>
+        <item>Kolkata</item>
+        <item>Chennai</item>
+        <item>Bangalore</item>
+        <item>Hyderabad</item>
+    </string-array>
+</resources>

@@ -1,1 +1,2 @@
-# Display-Weather-App
+# DisplayWeatherApp
+Display Weather Location for different city
