@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.displayweatherapp.models.WeatherResponse
 import com.example.displayweatherapp.repository.WeatherRepository
 import com.example.displayweatherapp.util.Resource
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
@@ -16,7 +17,7 @@ class WeatherViewModel(val weatherRepository: WeatherRepository) : ViewModel() {
 
     val weatherLocation: MutableLiveData<Resource<WeatherResponse>> = MutableLiveData()
 
-    fun getWeatherLocation(cityCode: String) = viewModelScope.launch {
+    fun getWeatherLocation(cityCode: String) = viewModelScope.launch(Dispatchers.IO) {
         weatherLocation.postValue(Resource.Loading())
         val response = weatherRepository.getweather(cityCode)
         Log.d("Weather Response", response.body().toString())

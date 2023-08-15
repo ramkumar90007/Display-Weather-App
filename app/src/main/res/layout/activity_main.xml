@@ -21,7 +21,7 @@
         android:layout_alignBottom="@id/txtView_country" />
 
 
-    <Button
+<!--    <Button
         android:id="@+id/btn_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,7 +61,27 @@
         android:id="@+id/btn_historicaldata_past3days"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Historical Data for Past 3 days" />
+        android:text="Historical Data for Past 3 days" />-->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="1dp"
+        android:background="#808080"/>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/linearContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
 
